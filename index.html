@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun Sayangku!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #8a2be2 0%, #da70d6 100%);
+            color: white;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .content {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .love-letter {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: left;
+            border-left: 5px solid #da70d6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .secret-photos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .secret-item {
+            height: 150px;
+            background: linear-gradient(45deg, #a18cd1, #fbc2eb);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-style: italic;
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+        
+        .secret-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .secret-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .memory {
+            background: #f9f0ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .memory h3 {
+            color: #8a2be2;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            background: #8a2be2;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            background: #6a0dad;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .music-btn {
+            background: #8a2be2;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: fall 5s linear infinite;
+            color: #ff6b6b;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .modal-content h2 {
+            margin-bottom: 20px;
+            color: #8a2be2;
+        }
+        
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .file-upload {
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .file-upload label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #8a2be2;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .secret-photos {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+            
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                border-radius: 10px;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Selamat Ulang Tahun Sayangku!</h1>
+            <p>Hanya untukmu, cintaku. Hari ini dan selamanya.</p>
+        </header>
+        
+        <div class="content">
+            <div class="message">
+                <p>Sayangku tercinta,</p>
+                <p>Di hari ulang tahunmu ini, aku ingin mengungkapkan betapa berartinya kamu bagiku. Setiap momen bersamamu adalah hadiah terindah dalam hidupku.</p>
+            </div>
+            
+            <div class="love-letter">
+                <h3>Surat Cinta Untukmu</h3>
+                <p>Sayangku,</p>
+                <p>Tak ada kata yang cukup indah untuk menggambarkan perasaanku padamu. Setiap detik bersamamu adalah anugerah yang tak ternilai. Di ulang tahunmu ini, aku berdoa agar kamu selalu diberikan kesehatan, kebahagiaan, dan kesuksesan.</p>
+                <p>Kamu adalah alasan senyumku setiap hari, alasan mataku berbinar, dan alasan hatiku berdetak dengan penuh cinta.</p>
+                <p>Selamat ulang tahun, cintaku. Aku akan selalu mencintaimu, sekarang dan selamanya.</p>
+                <p>Dengan cinta,<br>Kekasihmu</p>
+            </div>
+            
+            <h2>Kenangan Spesial Kita</h2>
+            <div class="secret-photos">
+                <div class="secret-item">Foto Spesial 1</div>
+                <div class="secret-item">Foto Spesial 2</div>
+                <div class="secret-item">Foto Spesial 3</div>
+                <div class="secret-item">Foto Spesial 4</div>
+                <div class="secret-item">Foto Spesial 5</div>
+                <div class="secret-item">Foto Spesial 6</div>
+            </div>
+            
+            <div class="memory">
+                <h3>Janji Kita</h3>
+                <p>Aku berjanji akan selalu ada untukmu, dalam suka dan duka. Akan selalu mendukungmu dalam setiap langkah dan impianmu. Akan mencintaimu tak peduli bagaimana keadaan kita nanti.</p>
+                <p>Bersamamu, aku menemukan rumah. Bersamamu, aku menemukan cinta sejati.</p>
+            </div>
+            
+            <button class="btn" onclick="playSpecialMessage()">Pesan Kejutan</button>
+            <button class="btn" onclick="showHearts()">Kirim Cinta</button>
+            
+            <div class="file-upload">
+                <label for="musicUpload">Unggah Musik Ulang Tahun (Format MP3):</label>
+                <input type="file" id="musicUpload" accept="audio/mp3" onchange="handleMusicUpload(this.files)">
+                <p class="music-info" id="musicInfo">Belum ada musik yang diunggah</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Hanya untukmu, cintaku. Selamanya dan selalu.</p>
+        </footer>
+    </div>
+
+    <div class="music-player">
+        <button class="music-btn" onclick="togglePlay()">▶</button>
+        <div class="music-controls">
+            <span id="musicTitle">Musik Ulang Tahun</span>
+            <div class="volume-control">
+                <span>🔈</span>
+                <input type="range" id="volume" min="0" max="1" step="0.1" value="0.7" onchange="setVolume(this.value)">
+            </div>
+        </div>
+    </div>
+
+    <div class="hearts" id="hearts"></div>
+
+    <div class="password-modal" id="passwordModal">
+        <div class="modal-content">
+            <h2>Akses Khusus</h2>
+            <p>Masukkan kata sandi untuk mengakses website spesial ini:</p>
+            <input type="password" id="passwordInput" placeholder="Masukkan kata sandi">
+            <button class="btn" onclick="checkPassword()">Masuk</button>
+        </div>
+    </div>
+
+    <audio id="bgMusic"></audio>
+
+    <script>
+        // Password protection
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            // Ganti "cinta" dengan kata sandi yang Anda inginkan
+            if (password === "cinta") {
+                document.getElementById('passwordModal').style.display = 'none';
+            } else {
+                alert("Kata sandi salah! Coba lagi.");
+            }
+        }
+        
+        // Music player functionality
+        const audio = document.getElementById('bgMusic');
+        let isPlaying = false;
+        const musicBtn = document.querySelector('.music-btn');
+        
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+                musicBtn.textContent = '▶';
+            } else {
+                audio.play().catch(e => {
+                    console.log("Playback failed:", e);
+                    alert("Silakan unggah file musik terlebih dahulu.");
+                });
+                musicBtn.textContent = '⏸';
+            }
+            isPlaying = !isPlaying;
+        }
+        
+        function setVolume(level) {
+            audio.volume = level;
+        }
+        
+        // Handle music upload
+        function handleMusicUpload(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                const objectURL = URL.createObjectURL(file);
+                audio.src = objectURL;
+                
+                // Update music info
+                document.getElementById('musicInfo').textContent = `Musik: ${file.name}`;
+                document.getElementById('musicTitle').textContent = file.name;
+                
+                // Auto-play the music
+                setTimeout(() => {
+                    togglePlay();
+                }, 1000);
+            }
+        }
+        
+        // Special message function
+        function playSpecialMessage() {
+            alert("Aku mencintaimu lebih dari kata-kata yang bisa diucapkan. Selamat ulang tahun sayangku! 💖");
+            
+            // Create a special animation
+            document.body.style.background = "linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%)";
+            createHearts(30);
+            
+            setTimeout(() => {
+                document.body.style.background = "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)";
+            }, 3000);
+        }
+        
+        // Create falling hearts animation
+        function createHearts(count) {
+            const heartsContainer = document.getElementById('hearts');
+            heartsContainer.innerHTML = '';
+            
+            for (let i = 0; i < count; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        function showHearts() {
+            createHearts(50);
+        }
+        
+        // Initialize
+        window.onload = function() {
+            // Show password modal on load
+            document.getElementById('passwordModal').style.display = 'flex';
+            
+            // Create some initial hearts
+            createHearts(20);
+            
+            // Allow Enter key to submit password
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+            
+            // Set initial volume
+            setVolume(0.7);
+        };
+    </script>
+</body>
+</html>
